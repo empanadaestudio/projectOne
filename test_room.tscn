@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://objects/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/player_camera.gd" type="Script" id=2]
+
+[node name="TestRoom" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 10.6817, 13.6733, 30.7508 )
+current = true
+script = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6185, 3.57847, -13.3436 )
+
+[node name="Floor" type="CSGCombiner" parent="."]
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="Floor"]
+width = 72.5132
+depth = 56.4943
+
+[node name="Block" type="CSGCombiner" parent="."]
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="Block"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5293, 6.92638, 1.82571 )
+width = 19.9701
+depth = 29.6377
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.460328, 0.0585973, -0.885813, 0.874426, -0.202151, 0.441038, -0.153225, -0.9776, -0.144295, 3.53372, 27.453, 1.62918 )
+shadow_enabled = true
+
+[node name="SpringArm" type="SpringArm" parent="."]
