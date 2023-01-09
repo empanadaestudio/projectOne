@@ -1,11 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://objects/player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Camara.tscn" type="PackedScene" id=2]
 
 [node name="TestRoom" type="Spatial"]
-
-[node name="Position3D" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6185, 3.57847, -13.3436 )
@@ -29,4 +26,9 @@ depth = 29.6377
 transform = Transform( 0.460328, 0.0585973, -0.885813, 0.874426, -0.202151, 0.441038, -0.153225, -0.9776, -0.144295, 3.53372, 27.453, 1.62918 )
 shadow_enabled = true
 
-[node name="SpringArm" type="SpringArm" parent="."]
+[node name="Camera" type="Camera" parent="."]
+
+[node name="CameraSystem" type="Spatial" parent="."]
+
+[node name="Position3D" type="Position3D" parent="CameraSystem"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5378, 13.7124, 31.1968 )

@@ -1,9 +1,8 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://objects/player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/script puzles/botones/Boton1.gd" type="Script" id=2]
-[ext_resource path="res://Camara.tscn" type="PackedScene" id=3]
-[ext_resource path="res://puzles/Puzle_botones.gd" type="Script" id=4]
+[ext_resource path="res://objects/Button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/CameraSystem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/player.tscn" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=19]
 
@@ -14,208 +13,23 @@
 [sub_resource type="SpatialMaterial" id=22]
 albedo_color = Color( 0.701961, 0.466667, 0.203922, 1 )
 
-[sub_resource type="CubeMesh" id=1]
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.223529, 0.933333, 0.423529, 1 )
-
-[sub_resource type="BoxShape" id=3]
-
-[sub_resource type="Animation" id=4]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Boton1:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 23.8832, 0, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../../Boton1:translation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 6.61438, 0.790518, 0 ) ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "pressed"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("../../Boton1:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector3( 6.61438, 0.790518, 0 ), Vector3( 6.61438, 0.0862713, 0 ) ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "released"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("../../Boton1:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector3( 6.614, 0.086, 0 ), Vector3( 6.61438, 0.790518, 0 ) ]
-}
-
-[sub_resource type="CubeMesh" id=7]
-
-[sub_resource type="SpatialMaterial" id=8]
-albedo_color = Color( 0.85098, 0.101961, 0.0235294, 1 )
-
-[sub_resource type="BoxShape" id=9]
-
-[sub_resource type="Animation" id=10]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Boton1:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 23.8832, 0, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../../Boton1:translation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 6.61438, 0.790518, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../../Boton2:translation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 12.196, 0.791, 0 ) ]
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "pressed"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("../../Boton2:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector3( 12.196, 0.791, 0 ), Vector3( 12.196, 0.086, 0 ) ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "released"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("../../Boton2:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1.31951 ),
-"update": 0,
-"values": [ Vector3( 12.196, 0.086, 0 ), Vector3( 12.196, 0.791, 0 ) ]
-}
-
-[sub_resource type="CubeMesh" id=13]
-
-[sub_resource type="SpatialMaterial" id=14]
-albedo_color = Color( 0.129412, 0.596078, 0.866667, 1 )
-
-[sub_resource type="BoxShape" id=15]
-
-[sub_resource type="Animation" id=16]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0.791, 0 ) ]
-}
-
-[sub_resource type="Animation" id=17]
-resource_name = "pressed"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0.791, 0 ), Vector3( 0, 0.086, 0 ) ]
-}
-
-[sub_resource type="Animation" id=18]
-resource_name = "released"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0.086, 0 ), Vector3( 0, 0.791, 0 ) ]
-}
-
 [node name="Puzle_botones" type="Spatial"]
-script = ExtResource( 4 )
 
-[node name="Camara" parent="." instance=ExtResource( 3 )]
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.258819, 0.482963, -0.836516, 0, 0.866025, 0.5, 0.965926, -0.12941, 0.224144, -9.96593, 10, 2.25882 )
+
+[node name="CameraSystem" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
+camera_path = NodePath("../Camera")
+
+[node name="Position3D" type="Position3D" parent="CameraSystem"]
+transform = Transform( -4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, 20, 10, 1 )
+
+[node name="Position3D2" type="Position3D" parent="CameraSystem"]
+transform = Transform( -1, 1.49012e-08, -4.47035e-08, 0, 0.866025, 0.5, 2.98023e-08, 0.5, -0.866025, 8, 10, -14 )
+
+[node name="Position3D3" type="Position3D" parent="CameraSystem"]
+transform = Transform( 0.5, 0.433013, -0.75, 0, 0.866025, 0.5, 0.866025, -0.25, 0.433013, -6, 10, 6 )
 
 [node name="Floor" type="CSGCombiner" parent="."]
 use_collision = true
@@ -226,12 +40,11 @@ width = 76.3258
 height = 0.5
 depth = 38.0589
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.750287, 0 )
+[node name="Player" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.90964, 9.51065, -5.40897 )
 
 [node name="BOX1" type="RigidBody" parent="."]
 transform = Transform( 0.902681, 0.263689, -0.340051, -0.280399, 0.959884, -1.29235e-08, 0.32641, 0.0953499, 0.940407, 3.49641, 8.36894, -3.58828 )
-mass = 5.0
 
 [node name="CollisionShape" type="CollisionShape" parent="BOX1"]
 shape = SubResource( 19 )
@@ -248,8 +61,6 @@ material = SubResource( 22 )
 
 [node name="BOX2" type="RigidBody" parent="."]
 transform = Transform( 0.760402, -0.594873, 0.260605, 0.509168, 0.795146, 0.329379, -0.403157, -0.117769, 0.907521, 12.8676, 8.78158, 2.58057 )
-mass = 5.0
-gravity_scale = 2.0
 
 [node name="CollisionShape" type="CollisionShape" parent="BOX2"]
 shape = SubResource( 19 )
@@ -264,59 +75,7 @@ shape = SubResource( 20 )
 mesh = SubResource( 21 )
 material = SubResource( 22 )
 
-[node name="Boton1" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.61438, 0.790518, 0 )
-script = ExtResource( 2 )
+[node name="Button" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.9, 0 )
 
-[node name="CSGBox" type="MeshInstance" parent="Boton1"]
-mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Boton1"]
-shape = SubResource( 3 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Boton1"]
-root_node = NodePath("../../Floor/CSGBox")
-anims/RESET = SubResource( 4 )
-anims/pressed = SubResource( 5 )
-anims/released = SubResource( 6 )
-
-[node name="Boton2" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.196, 0.791, 0 )
-script = ExtResource( 2 )
-
-[node name="CSGMesh" type="CSGMesh" parent="Boton2"]
-mesh = SubResource( 7 )
-material = SubResource( 8 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Boton2"]
-shape = SubResource( 9 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Boton2"]
-root_node = NodePath("../../Floor/CSGBox")
-anims/RESET = SubResource( 10 )
-anims/pressed = SubResource( 11 )
-anims/released = SubResource( 12 )
-
-[node name="Boton3" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.791, 0 )
-script = ExtResource( 2 )
-
-[node name="CSGMesh" type="CSGMesh" parent="Boton3"]
-mesh = SubResource( 13 )
-material = SubResource( 14 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Boton3"]
-shape = SubResource( 15 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Boton3"]
-anims/RESET = SubResource( 16 )
-anims/pressed = SubResource( 17 )
-anims/released = SubResource( 18 )
-
-[connection signal="area_entered" from="Boton1" to="Boton1" method="_on_Boton1_area_entered"]
-[connection signal="area_exited" from="Boton1" to="Boton1" method="_on_Boton1_area_exited"]
-[connection signal="area_entered" from="Boton2" to="Boton2" method="_on_Boton2_area_entered"]
-[connection signal="area_exited" from="Boton2" to="Boton2" method="_on_Boton2_area_exited"]
-[connection signal="area_entered" from="Boton3" to="Boton3" method="_on_Boton3_area_entered"]
-[connection signal="area_exited" from="Boton3" to="Boton3" method="_on_Boton3_area_exited"]
+[editable path="CameraSystem"]

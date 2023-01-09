@@ -2,20 +2,25 @@ extends KinematicBody
 
 const GRAVITY := -300.0
 
-var speed := 500.0
+export var speed := 700.0
+export var jump_force := 3000.0
+
+
+onready var floor_raycast = $FloorRayCast
+
+
 var rotation_speed := 5.0
-var jump_force := 3000.0
 
 var velocity := Vector3.ZERO
-var snap_vector := Vector3.DOWN
 
 func _physics_process(delta):
 	
-	velocity.y += GRAVITY * delta
+	if not floor_raycast.is_colliding():
+		velocity.y += GRAVITY * delta
 	
 	get_inpt(delta)
 	
-	if Input.is_action_just_pressed("ui_jump") and is_on_floor():
+	if Input.is_action_pressed("ui_jump") and floor_raycast.is_colliding():
 		velocity.y = jump_force * delta
 	
 	velocity = move_and_slide(velocity, Vector3.UP)
