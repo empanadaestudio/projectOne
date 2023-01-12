@@ -17,3 +17,4 @@ func button_released(area):
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
 	tween.tween_property(button_box,"translation:y", hitbox.translation.y, 0.33)
+	
