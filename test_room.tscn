@@ -1,15 +1,32 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://objects/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/CameraSystem.tscn" type="PackedScene" id=2]
-
-[sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 0.917647, 0.0392157, 0.0392157, 1 )
+[ext_resource path="res://objects/GenericBox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/Button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/Goal.tscn" type="PackedScene" id=5]
 
 [node name="TestRoom" type="Spatial"]
 
+[node name="Goal" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0, -0.707107, 0.707107, 1, 0, 0, 0, 0.707107, 0.707107, 13, 6, 7 )
+exclusive = true
+
+[node name="Button" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 1, 0 )
+
+[node name="Button2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 1, 0 )
+order = 2
+
+[node name="GenericBox" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 9, -8 )
+
+[node name="GenericBox2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 9, -8 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6185, 3.57847, -13.3436 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 3, -10 )
 
 [node name="Floor" type="CSGCombiner" parent="."]
 use_collision = true
@@ -19,10 +36,10 @@ width = 72.5132
 depth = 56.4943
 
 [node name="Block" type="CSGCombiner" parent="."]
+transform = Transform( 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 1, 2.4, 0 )
 use_collision = true
 
 [node name="CSGBox" type="CSGBox" parent="Block"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5293, 6.92638, 1.82571 )
 width = 19.9701
 depth = 29.6377
 
@@ -34,54 +51,21 @@ shadow_enabled = true
 transform = Transform( 0.884284, 0.135568, -0.446837, -0.00351034, 0.95883, 0.283958, 0.466936, -0.249531, 0.848354, -30.479, 16.8074, 27.8216 )
 current = true
 
-[node name="CSGBox" type="CSGBox" parent="Camera"]
-transform = Transform( 1, 7.45058e-09, 0, -7.45058e-09, 1, 0, 0, 0, 1, 0, 0, 0 )
-material = SubResource( 1 )
-
 [node name="CameraDebug" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.4075, 60.7385, -3.07822 )
-
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.23055, 4.34345, 0 )
 
 [node name="CameraSystem" parent="." instance=ExtResource( 2 )]
 camera_path = NodePath("../Camera")
 target_path = NodePath("../Player")
 
 [node name="Position3D" type="Position3D" parent="CameraSystem"]
-transform = Transform( 0.550503, -0.235205, 0.801015, -0.00351034, 0.95883, 0.283958, -0.834826, -0.159131, 0.527014, 29.6106, 9.59455, 26.8741 )
-
-[node name="Label3D4" type="Label3D" parent="CameraSystem/Position3D"]
-transform = Transform( 4.24267, 13.8466, -0.260533, -2.96171, 4.82763, 0.925976, 14.0793, -3.15698, 0.273296, 0, 0, 0 )
-modulate = Color( 0, 0, 0, 1 )
-text = "Punto 1
-
-
-"
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6106, 10, 26.8741 )
 
 [node name="Position3D2" type="Position3D" parent="CameraSystem"]
-transform = Transform( -0.637692, -0.220877, 0.737945, -0.00351034, 0.95883, 0.283958, -0.770284, 0.178487, -0.612214, 37.2165, 9.94109, -27.5257 )
-
-[node name="Label3D3" type="Label3D" parent="CameraSystem/Position3D2"]
-transform = Transform( -12.4797, 8.24029, -0.0776239, -1.28823, 0.160572, 0.996248, 8.22183, 12.5328, 0.0382735, 0, 0, 0 )
-modulate = Color( 0, 0, 0, 1 )
-text = "Punto 2
-
-"
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37.2165, 10, -27.5257 )
 
 [node name="Position3D3" type="Position3D" parent="CameraSystem"]
-transform = Transform( -0.342996, 0.265585, -0.90101, -0.0035143, 0.958828, 0.283965, 0.93933, 0.100565, -0.327941, -31.8865, 9.59455, -24.1967 )
-
-[node name="Label3D2" type="Label3D" parent="CameraSystem/Position3D3"]
-transform = Transform( -2.85178, -14.2311, 0.25247, 5.25591, 2.61978, 0.920174, -13.7566, 3.95109, 0.29923, 0, 0, 0 )
-modulate = Color( 0, 0, 0, 1 )
-text = "Punto 3
-"
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.8865, 10, -24.1967 )
 
 [node name="Position3D4" type="Position3D" parent="CameraSystem"]
-transform = Transform( 0.884284, 0.135568, -0.446837, -0.00351034, 0.95883, 0.283958, 0.466936, -0.249531, 0.848354, -23.404, 16.8074, 17.0354 )
-
-[node name="Label3D" type="Label3D" parent="CameraSystem/Position3D4"]
-transform = Transform( 14.681, -3.04578, -0.0292221, 1.95085, 7.56008, 0.853852, -2.37973, -12.5924, 0.519695, -0.00871658, 2.38096, 0.705124 )
-modulate = Color( 0, 0, 0, 1 )
-text = "Punto 4"
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.404, 10, 17.0354 )

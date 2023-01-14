@@ -2,6 +2,7 @@ extends Spatial
 
 export(NodePath) var camera_path
 export(NodePath) var target_path
+export var transition_duration := 1.5
 
 onready var camera = get_node(camera_path)
 onready var target = get_node(target_path)
@@ -18,7 +19,8 @@ func _ready():
 	
 	new_position = position_nodes[camera_pos]
 	
-	move_camera()
+	camera.translation = new_position.translation
+
 
 func _input(event):
 	if event.is_action_pressed("ui_camera_left") and camera_can_move:
@@ -28,8 +30,10 @@ func _input(event):
 		camera_pos += 1
 		move_camera()
 
+
 func _process(delta):
 	camera.look_at(Vector3(target.translation.x,0,target.translation.z), Vector3.UP)
+
 
 func move_camera():
 	
@@ -43,9 +47,7 @@ func move_camera():
 	
 	new_position = position_nodes[camera_pos]
 	
-	tween.tween_property(camera,"translation", new_position.translation, 1)
-	
+	tween.tween_property(camera,"translation", new_position.translation, transition_duration)
 	
 	yield(tween, "finished")
 	camera_can_move = true
-	
