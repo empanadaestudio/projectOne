@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/basura2.fbx-60e47fe3737592312f6fd3eef17d67e2.scn"
+path="res://.import/player.gltf-703308be681c0f3f18965f1857e93b06.scn"
 
 [deps]
 
-source_file="res://models/basura2.fbx"
-dest_files=[ "res://.import/basura2.fbx-60e47fe3737592312f6fd3eef17d67e2.scn" ]
+source_file="res://models/player/player.gltf"
+dest_files=[ "res://.import/player.gltf-703308be681c0f3f18965f1857e93b06.scn" ]
 
 [params]
 
@@ -15,15 +15,15 @@ nodes/root_type="Spatial"
 nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""
-nodes/storage=0
-nodes/use_legacy_names=false
+nodes/storage=1
+nodes/use_legacy_names=true
 materials/location=1
 materials/storage=1
-materials/keep_on_reimport=true
+materials/keep_on_reimport=false
 meshes/octahedral_compression=true
 meshes/compress=4286
 meshes/ensure_tangents=true
-meshes/storage=0
+meshes/storage=1
 meshes/light_baking=0
 meshes/lightmap_texel_size=0.1
 skins/use_named_skins=true
@@ -31,8 +31,8 @@ external_files/store_in_subdir=false
 animation/import=true
 animation/fps=15
 animation/filter_script=""
-animation/storage=false
-animation/keep_custom_tracks=false
+animation/storage=true
+animation/keep_custom_tracks=true
 animation/optimizer/enabled=true
 animation/optimizer/max_linear_error=0.05
 animation/optimizer/max_angular_error=0.01

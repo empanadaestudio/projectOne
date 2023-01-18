@@ -2,11 +2,11 @@ extends KinematicBody
 
 
 
-const GRAVITY := -300.0           #Constante de gravedad
+const GRAVITY := -100.0           #Constante de gravedad
 
 #Variables para el inspector
-export var speed := 800.0                #Velocidad del jugador
-export var jump_force := 3000.0          #Fuerza del salto del jugador
+export var speed := 600.0                #Velocidad del jugador
+export var jump_force := 800.0          #Fuerza del salto del jugador
 export var rotation_speed := 7.0         #Velocidad de rotacion del jugador
 
 #Nodos
@@ -18,8 +18,10 @@ var prev_collider
 var picked_object
 
 var velocity := Vector3.ZERO      #Vector de velocidad
+var snap_vector := Vector3.DOWN
 
 func _physics_process(delta):
+	
 	
 	#Si no esta en el suelo se le aplica gravedad
 	if not is_on_floor():
@@ -28,20 +30,15 @@ func _physics_process(delta):
 	#Collider obtiene el valor el Area con el que colisiona el raycast
 	var collider = interaction.get_collider()
 	
-	#Funcion donde se colocan todo tipo de inputs 
-	get_inpt(delta)
+	#Control de movimiento con laderas
+	move_control(delta)
 	
 	
-	#Aplicar movimiento
-	velocity = move_and_slide(velocity, Vector3.UP)
-	
-	##############PARA PICKUP#################
 	if picked_object:
 		var tween := create_tween()
 		tween.tween_property(picked_object, "global_translation", hand.global_translation, 0.1)
-		
 	
-		####VISIBILIDAD DEL SHADER####
+	
 	if collider:
 		if collider.get_parent().is_in_group("box"):
 			collider.get_node("shader").visible = true
@@ -56,10 +53,13 @@ func _physics_process(delta):
 
 
 
-func get_inpt(delta):
+func move_control(delta):
 	
 	#Guarda la velocidad en y 
 	var vy = velocity.y
+	
+	var just_landed := is_on_floor() and snap_vector == Vector3.ZERO
+	var is_jumping := is_on_floor() and Input.is_action_pressed("ui_jump")
 	
 	#Setear velocity a Vector3.ZERO
 	velocity = Vector3.ZERO
@@ -87,11 +87,20 @@ func get_inpt(delta):
 	velocity.y = vy
 	
 	#Salta si se aprieta su tecla y esta en el suelo
-	if Input.is_action_pressed("ui_jump") and is_on_floor():
+	if is_jumping:
 		velocity.y = jump_force * delta
+		snap_vector = Vector3.ZERO
+	elif just_landed:
+		snap_vector = Vector3.DOWN
 	
+	#Aplicar movimiento
+	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true, 2)
+	
+
+
+func _unhandled_input(event):
 	##############PARA PICKUP##############
-	if Input.is_action_just_pressed("left_mouse_click"):
+	if event.is_action_pressed("left_mouse_click"):
 		if picked_object:
 			drop_object()
 		else:

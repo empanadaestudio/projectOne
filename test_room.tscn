@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://objects/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/CameraSystem.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/GenericBox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/Button.tscn" type="PackedScene" id=4]
@@ -69,3 +69,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.8865, 10, -24.1967 )
 
 [node name="Position3D4" type="Position3D" parent="CameraSystem"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.404, 10, 17.0354 )
+
+[node name="Position3D5" type="Position3D" parent="CameraSystem"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60.9043, 25.9661, 17.0354 )
