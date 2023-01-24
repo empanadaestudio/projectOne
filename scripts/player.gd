@@ -6,7 +6,7 @@ const GRAVITY := -100.0           #Constante de gravedad
 
 #Variables para el inspector
 export var speed := 600.0                #Velocidad del jugador
-export var jump_force := 800.0          #Fuerza del salto del jugador
+export var jump_force := 900.0           #Fuerza del salto del jugador
 export var rotation_speed := 7.0         #Velocidad de rotacion del jugador
 
 #Nodos
@@ -76,6 +76,7 @@ func move_control(delta):
 	#Aplicando velocidad con move_direction.z de forma local
 	if move_direction.z:
 		velocity += transform.basis.z * speed * move_direction.z * delta
+		#$AnimationPlayer.play("walk")
 	
 	#Rotar al player 
 	rotate_y(rotation_speed * delta * -move_direction.x)
@@ -128,3 +129,5 @@ func _on_Area_area_entered(area):
 #		if area.level_passed:
 #			if Input.is_action_just_pressed("left_mouse_click"):
 #				print("ganaste")
+
+

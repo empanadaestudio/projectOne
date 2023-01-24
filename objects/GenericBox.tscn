@@ -16,7 +16,7 @@ size = Vector3( 1, 1, 1 )
 
 [sub_resource type="ShaderMaterial" id=24]
 shader = ExtResource( 1 )
-shader_param/border_width = 0.5
+shader_param/border_width = 0.8
 shader_param/color = Color( 1, 0.0117647, 0.0117647, 1 )
 shader_param/pattern = null
 shader_param/line_number = null

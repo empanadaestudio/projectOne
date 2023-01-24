@@ -2,11 +2,9 @@ extends CSGCombiner
 
 export(int, "todos", "progresivo", "secuencial") var mode
 export var exclusive := false
-export var buttons : Array = [NodePath()]
-
+export var buttons : Array = []
 
 onready var box : CSGBox = $CSGBox
-
 
 var all_button_presseds : Array
 var buttons_instances : Array
@@ -16,16 +14,17 @@ var level_passed := false
 
 
 func _ready():
-	for i in buttons.size():
-		var b_instance = get_node(buttons[i])
-		b_instance.connect("pressed",self,"step")
-		b_instance.connect("released",self,"step")
-		buttons_instances.append(b_instance)
-	
-	match mode:
-		0:
-			all_button_presseds.resize(buttons_instances.size())
-			all_button_presseds.fill(false)
+	if buttons.size() > 0:
+		for i in buttons.size():
+			var b_instance = get_node(buttons[i])
+			b_instance.connect("pressed",self,"step")
+			b_instance.connect("released",self,"step")
+			buttons_instances.append(b_instance)
+		
+		match mode:
+			0:
+				all_button_presseds.resize(buttons_instances.size())
+				all_button_presseds.fill(false)
 
 
 func step(button, msg := {}):
@@ -66,7 +65,7 @@ func step(button, msg := {}):
 				
 
 func open_door():
-	box.material.albedo_color = Color(1,1,1,1)
+	box.visible = false
 
 func close_door():
-	box.material.albedo_color = Color(1,0,0,1)
+	box.visible = true
