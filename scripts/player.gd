@@ -6,7 +6,7 @@ const GRAVITY := -100.0           #Constante de gravedad
 
 #Variables para el inspector
 export var speed := 600.0                #Velocidad del jugador
-export var jump_force := 900.0           #Fuerza del salto del jugador
+export var jump_force := 1100.0           #Fuerza del salto del jugador
 export var rotation_speed := 7.0         #Velocidad de rotacion del jugador
 
 #Nodos
@@ -21,7 +21,6 @@ var velocity := Vector3.ZERO      #Vector de velocidad
 var snap_vector := Vector3.DOWN
 
 func _physics_process(delta):
-	
 	
 	#Si no esta en el suelo se le aplica gravedad
 	if not is_on_floor():
@@ -96,7 +95,6 @@ func move_control(delta):
 	
 	#Aplicar movimiento
 	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true, 2)
-	
 
 
 func _unhandled_input(event):
@@ -113,21 +111,8 @@ func pick_object():
 	var collider = interaction.get_collider()
 	if collider and collider.get_parent() is RigidBody:
 		picked_object = collider.get_parent()
-		
-		picked_object.mode = RigidBody.MODE_KINEMATIC
-		
 
 func drop_object():
-	picked_object.mode = RigidBody.MODE_RIGID
-	
 	picked_object = null
-
-
-func _on_Area_area_entered(area):
-	if area.is_in_group("goal"):
-		print(area.get_parent().level_passed)
-#		if area.level_passed:
-#			if Input.is_action_just_pressed("left_mouse_click"):
-#				print("ganaste")
 
 

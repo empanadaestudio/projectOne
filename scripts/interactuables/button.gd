@@ -5,8 +5,8 @@ export var order := 1
 onready var button_box = $CSGBox
 onready var hitbox = $CollisionShape
 
-signal pressed
-signal released
+signal pressed(node, arg)
+signal released(node, arg)
 
 var pressed := false
 
@@ -17,7 +17,7 @@ func _ready():
 func button_pressed(area):
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
-	tween.tween_property(button_box,"translation:y", -0.5, 0.33)
+	tween.tween_property(button_box,"translation:y", button_box.translation.y-0.5, 0.33)
 	
 	pressed = true
 	emit_signal("pressed", self, {_order = order, _pressed = pressed})

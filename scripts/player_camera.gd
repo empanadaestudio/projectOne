@@ -33,7 +33,7 @@ func _input(event):
 
 func _process(delta):
 	camera.look_at(Vector3(target.translation.x,0,target.translation.z), Vector3.UP)
-
+	pass
 
 func move_camera():
 	
