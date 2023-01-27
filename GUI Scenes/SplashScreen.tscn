@@ -2,8 +2,8 @@
 
 [ext_resource path="res://sprites/empanada2.0.png" type="Texture" id=1]
 [ext_resource path="res://GUI Scenes/SplashScreen.gd" type="Script" id=2]
-[ext_resource path="res://Sounds/SoundEffects/Whoosh.wav" type="AudioStream" id=3]
-[ext_resource path="res://Sounds/SoundEffects/LogoEntry.wav" type="AudioStream" id=4]
+[ext_resource path="res://sounds/SoundEffects/LogoEntry.wav" type="AudioStream" id=3]
+[ext_resource path="res://sounds/SoundEffects/Whoosh.wav" type="AudioStream" id=4]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -167,7 +167,7 @@ anims/RESET = SubResource( 4 )
 anims/fade = SubResource( 1 )
 
 [node name="LogoEntry" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LogoEntry"]
 autoplay = "play"
@@ -175,7 +175,7 @@ anims/RESET = SubResource( 5 )
 anims/play = SubResource( 6 )
 
 [node name="Whoosh" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource( 4 )
 
 [connection signal="animation_finished" from="Container/Sprite/AnimationPlayer2" to="." method="_on_AnimationPlayer2_animation_finished"]
 [connection signal="animation_finished" from="ColorRect2/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

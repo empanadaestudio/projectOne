@@ -1,21 +1,21 @@
 extends KinematicBody
 
 
-
 const GRAVITY := -100.0           #Constante de gravedad
 
 #Variables para el inspector
-export var speed := 600.0                #Velocidad del jugador
-export var jump_force := 1100.0           #Fuerza del salto del jugador
-export var rotation_speed := 7.0         #Velocidad de rotacion del jugador
+export var speed := 600.0                 #Velocidad del jugador
+export var jump_force := 1500.0           #Fuerza del salto del jugador
+export var rotation_speed := 6.0          #Velocidad de rotacion del jugador
 
 #Nodos
-onready var interaction = $interaction     #Raycast para saber si puede interactuar
-onready var hand = $hand                   #Posision de las manos
+onready var interaction : RayCast = $interaction        #Raycast para saber si puede interactuar
+onready var hand : Position3D = $hand                   #Posision de las manos
 
 #Otras variables
 var prev_collider
 var picked_object
+var pull_power := 10
 
 var velocity := Vector3.ZERO      #Vector de velocidad
 var snap_vector := Vector3.DOWN
@@ -26,34 +26,35 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	
-	#Collider obtiene el valor el Area con el que colisiona el raycast
-	var collider = interaction.get_collider()
-	
 	#Control de movimiento con laderas
 	move_control(delta)
 	
+	pick_control()
+
+func pick_control():
+	
+	#Collider obtendra el valor del BODY con el que colisione el raycast "interaction"
+	#Si y solo si existe un body y esta en el grupo "pickeable"
+	var collider = interaction.get_collider() if interaction.get_collider() != null and interaction.get_collider().is_in_group("pickeable") else null
 	
 	if picked_object:
-		var tween := create_tween()
-		tween.tween_property(picked_object, "global_translation", hand.global_translation, 0.1)
-	
+		var a = picked_object.global_transform.origin
+		var b = hand.global_transform.origin
+		if b.distance_to(a) < 5:
+			picked_object.set_linear_velocity((b-a) * pull_power)
+		else:
+			drop_object()
 	
 	if collider:
-		if collider.get_parent().is_in_group("box"):
-			collider.get_node("shader").visible = true
+		collider.get_node("shader").visible = true
 	else:
 		if prev_collider:
-			if prev_collider.get_parent().is_in_group("box"):
-				prev_collider.get_node("shader").visible = false
-	
+			prev_collider.get_node("shader").visible = false
 	
 	prev_collider = collider
-	##########################################
-
-
+	
 
 func move_control(delta):
-	
 	#Guarda la velocidad en y 
 	var vy = velocity.y
 	
@@ -96,7 +97,6 @@ func move_control(delta):
 	#Aplicar movimiento
 	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true, 2)
 
-
 func _unhandled_input(event):
 	##############PARA PICKUP##############
 	if event.is_action_pressed("left_mouse_click"):
@@ -106,11 +106,11 @@ func _unhandled_input(event):
 			pick_object()
 	#######################################
 
-
 func pick_object():
-	var collider = interaction.get_collider()
-	if collider and collider.get_parent() is RigidBody:
-		picked_object = collider.get_parent()
+	var collider = interaction.get_collider() if interaction.get_collider() != null and interaction.get_collider().is_in_group("pickeable") else null
+	
+	if collider:
+		picked_object = collider
 
 func drop_object():
 	picked_object = null

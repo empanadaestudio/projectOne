@@ -1,6 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://shaders/outline.gdshader" type="Shader" id=1]
+
+[sub_resource type="PhysicsMaterial" id=26]
+rough = true
+absorbent = true
 
 [sub_resource type="BoxShape" id=19]
 
@@ -24,8 +28,11 @@ shader_param/line_movement = null
 shader_param/line_movement_speed = null
 shader_param/wave = null
 
-[node name="GenericBox" type="RigidBody" groups=["box"]]
+[node name="GenericBox" type="RigidBody" groups=["pickeable"]]
+physics_material_override = SubResource( 26 )
 can_sleep = false
+linear_damp = 2.0
+angular_damp = 2.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 19 )
@@ -35,11 +42,7 @@ transform = Transform( 1, -5.02914e-08, 0, -3.35276e-08, 1, 7.45058e-09, -2.9802
 mesh = SubResource( 21 )
 material = SubResource( 22 )
 
-[node name="Area" type="Area" parent="."]
-
-[node name="shader" type="CSGMesh" parent="Area"]
+[node name="shader" type="CSGMesh" parent="."]
+visible = false
 mesh = SubResource( 25 )
 material = SubResource( 24 )
-
-[node name="CollisionShape2" type="CollisionShape" parent="Area"]
-shape = SubResource( 19 )
