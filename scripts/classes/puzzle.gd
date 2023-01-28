@@ -7,10 +7,6 @@ export(float) var time_transition = 0.5
 export var exclusive := false
 export var actionables : Array = [NodePath()]
 
-
-
-onready var box : CSGBox = $CSGBox
-
 var all_actions_active : Array
 var actionable_instances : Array
 

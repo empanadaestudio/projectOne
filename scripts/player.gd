@@ -3,10 +3,14 @@ extends KinematicBody
 
 const GRAVITY := -100.0           #Constante de gravedad
 
+signal player_death
+
+
 #Variables para el inspector
-export var speed := 600.0                 #Velocidad del jugador
-export var jump_force := 1500.0           #Fuerza del salto del jugador
-export var rotation_speed := 6.0          #Velocidad de rotacion del jugador
+export var speed := 600.0             #Velocidad del jugador
+export var jump_force := 1500.0       #Fuerza del salto del jugador
+export var rotation_speed := 6.0      #Velocidad de rotacion del jugador
+export var initial_time := 120         #Tiempo de vida en segundos
 
 #Nodos
 onready var interaction : RayCast = $interaction        #Raycast para saber si puede interactuar
@@ -18,7 +22,15 @@ var picked_object
 var pull_power := 10
 
 var velocity := Vector3.ZERO      #Vector de velocidad
-var snap_vector := Vector3.DOWN
+var snap_vector := Vector3.DOWN   #Vector del suelo
+
+var life_time = initial_time
+
+func _ready():
+	update_health()
+
+func update_health():
+	$"%LifeTime".text = str(life_time/60) + " : " + str(life_time%60)
 
 func _physics_process(delta):
 	
@@ -28,8 +40,8 @@ func _physics_process(delta):
 	
 	#Control de movimiento con laderas
 	move_control(delta)
-	
 	pick_control()
+	
 
 func pick_control():
 	
@@ -98,13 +110,11 @@ func move_control(delta):
 	velocity = move_and_slide_with_snap(velocity, snap_vector, Vector3.UP, true, 2)
 
 func _unhandled_input(event):
-	##############PARA PICKUP##############
 	if event.is_action_pressed("left_mouse_click"):
 		if picked_object:
 			drop_object()
 		else:
 			pick_object()
-	#######################################
 
 func pick_object():
 	var collider = interaction.get_collider() if interaction.get_collider() != null and interaction.get_collider().is_in_group("pickeable") else null
@@ -115,4 +125,8 @@ func pick_object():
 func drop_object():
 	picked_object = null
 
-
+func _on_Timer_timeout():
+	life_time -= 1
+	update_health()
+	if life_time == 0:
+		emit_signal("player_death")

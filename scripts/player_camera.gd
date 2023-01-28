@@ -29,7 +29,7 @@ func _ready():
 
 func connect_area(other_area, area):
 	
-	if other_area.is_in_group("player"):
+	if other_area.is_in_group("player_area"):
 		
 		if camera_pos != 0:
 			var tween := create_tween()
