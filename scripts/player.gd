@@ -35,6 +35,7 @@ func update_health():
 
 func _physics_process(delta):
 	
+	
 	#Si no esta en el suelo se le aplica gravedad
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
@@ -60,10 +61,11 @@ func pick_control():
 	
 	if collider is RigidBody:
 		collider.find_node("shader").visible = true
-		
+		show_interact_icon(collider)
 	else:
 		if prev_collider is RigidBody:
 			prev_collider.find_node("shader").visible = false
+			show_interact_icon(prev_collider, false)
 	
 	prev_collider = collider
 	
@@ -132,7 +134,10 @@ func interact():
 		elif collider is LeverClass:
 			collider.active()
 			
-			print(collider.on)
+
+func show_interact_icon(target := Spatial, show := true):
+	$InteractIcon.visible = show
+	$InteractIcon.global_translation = target.global_translation + Vector3(0,2,0)
 
 func drop_object():
 	picked_object = null
