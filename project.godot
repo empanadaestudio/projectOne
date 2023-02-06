@@ -9,10 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Area",
+"base": "InteractableClass",
 "class": "ButtonClass",
 "language": "GDScript",
-"path": "res://scripts/classes/button.gd"
+"path": "res://scripts/classes/sub_classes/button.gd"
+}, {
+"base": "Spatial",
+"class": "InteractableClass",
+"language": "GDScript",
+"path": "res://scripts/classes/interactable.gd"
+}, {
+"base": "InteractableClass",
+"class": "LeverClass",
+"language": "GDScript",
+"path": "res://scripts/classes/sub_classes/lever.gd"
 }, {
 "base": "Spatial",
 "class": "PuzzleClass",
@@ -21,6 +31,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ButtonClass": "",
+"InteractableClass": "",
+"LeverClass": "",
 "PuzzleClass": ""
 }
 

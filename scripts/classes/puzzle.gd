@@ -16,8 +16,8 @@ func _ready():
 	if actionables.size() > 0:
 		for i in actionables.size():
 			var b_instance = get_node(actionables[i])
-			b_instance.connect("pressed",self,"step")
-			b_instance.connect("released",self,"step")
+			b_instance.connect("active",self,"step")
+			b_instance.connect("desactive",self,"step")
 			actionable_instances.append(b_instance)
 		
 		match mode:
@@ -25,14 +25,15 @@ func _ready():
 				all_actions_active.resize(actionable_instances.size())
 				all_actions_active.fill(false)
 
-func step(interactuable, msg := {}):
+func step(interactuable, msg := InteractableClass.args):
 	match mode:
 		0:
 			if exclusive:
+				
 				steps_complete = 0
 				
 				var pos = actionable_instances.find(interactuable)
-				all_actions_active[pos] = msg.active
+				all_actions_active[pos] = msg.state
 				
 				for pressed in all_actions_active:
 					if pressed:
@@ -43,10 +44,11 @@ func step(interactuable, msg := {}):
 				else:
 					disable()
 			else:
+				
 				steps_complete = 0
 				
 				var pos = actionable_instances.find(interactuable)
-				all_actions_active[pos] = msg.active
+				all_actions_active[pos] = msg.state
 				
 				for active in all_actions_active:
 					if active:

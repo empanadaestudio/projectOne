@@ -15,6 +15,7 @@ export var initial_time := 120         #Tiempo de vida en segundos
 #Nodos
 onready var interaction : RayCast = $interaction        #Raycast para saber si puede interactuar
 onready var hand : Position3D = $hand                   #Posision de las manos
+onready var anim_player : AnimationPlayer = $modelo/AnimationPlayer
 
 #Otras variables
 var prev_collider
@@ -47,7 +48,7 @@ func pick_control():
 	
 	#Collider obtendra el valor del BODY con el que colisione el raycast "interaction"
 	#Si y solo si existe un body y esta en el grupo "pickeable"
-	var collider = interaction.get_collider() if interaction.get_collider() != null and interaction.get_collider().is_in_group("pickeable") else null
+	var collider = interaction.get_collider()
 	
 	if picked_object:
 		var a = picked_object.global_transform.origin
@@ -57,11 +58,12 @@ func pick_control():
 		else:
 			drop_object()
 	
-	if collider:
-		collider.get_node("shader").visible = true
+	if collider is RigidBody:
+		collider.find_node("shader").visible = true
+		
 	else:
-		if prev_collider:
-			prev_collider.get_node("shader").visible = false
+		if prev_collider is RigidBody:
+			prev_collider.find_node("shader").visible = false
 	
 	prev_collider = collider
 	
@@ -90,6 +92,8 @@ func move_control(delta):
 		velocity += transform.basis.z * speed * move_direction.z * delta
 		#$AnimationPlayer.play("walk")
 	
+	anim_player.play("ArmatureAction")
+	
 	#Rotar al player 
 	rotate_y(rotation_speed * delta * -move_direction.x)
 	
@@ -111,16 +115,24 @@ func move_control(delta):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("left_mouse_click"):
-		if picked_object:
-			drop_object()
-		else:
-			pick_object()
+		interact()
 
-func pick_object():
-	var collider = interaction.get_collider() if interaction.get_collider() != null and interaction.get_collider().is_in_group("pickeable") else null
+func interact():
+	var collider = interaction.get_collider() 
+	
+	if picked_object:
+		drop_object()
 	
 	if collider:
-		picked_object = collider
+		if collider.is_in_group("pickeable"):
+			if picked_object:
+				drop_object()
+			else:
+				picked_object = collider
+		elif collider is LeverClass:
+			collider.active()
+			
+			print(collider.on)
 
 func drop_object():
 	picked_object = null

@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
-[ext_resource path="res://models/player/AnimationPlayer.scn" type="PackedScene" id=2]
-[ext_resource path="res://models/player/metarig.scn" type="PackedScene" id=3]
+[ext_resource path="res://models/player/PlayerModel.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.609064
@@ -31,12 +30,6 @@ cast_to = Vector3( 0, 2, 0 )
 [node name="hand" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66666, 1.88889 )
 
-[node name="Model" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-
-[node name="AnimationPlayer" parent="." instance=ExtResource( 2 )]
-playback_speed = 5.0
-
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
@@ -49,4 +42,8 @@ margin_bottom = 61.0
 align = 1
 valign = 1
 
+[node name="modelo" parent="." instance=ExtResource( 2 )]
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="modelo"]
