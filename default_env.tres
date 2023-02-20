@@ -1,7 +1,19 @@
-[gd_resource type="Environment" load_steps=2 format=2]
+[gd_resource type="Environment" load_steps=4 format=2]
 
-[sub_resource type="ProceduralSky" id=1]
+[sub_resource type="Gradient" id=1]
+interpolation_mode = 2
+offsets = PoolRealArray( 0, 0.710345 )
+colors = PoolColorArray( 0, 0.010252, 0.0419922, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=2]
+gradient = SubResource( 1 )
+fill_from = Vector2( 0.515278, 0.526389 )
+
+[sub_resource type="ProceduralSky" id=3]
 
 [resource]
 background_mode = 2
-background_sky = SubResource( 1 )
+background_sky = SubResource( 3 )
+dof_blur_far_distance = 57.57
+dof_blur_far_quality = 0
+adjustment_color_correction = SubResource( 2 )

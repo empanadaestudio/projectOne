@@ -7,7 +7,7 @@ signal player_death
 
 
 #Variables para el inspector
-export var speed := 600.0             #Velocidad del jugador
+export var speed := 1000.0             #Velocidad del jugador
 export var jump_force := 1500.0       #Fuerza del salto del jugador
 export var rotation_speed := 6.0      #Velocidad de rotacion del jugador
 export var initial_time := 120         #Tiempo de vida en segundos
@@ -15,7 +15,7 @@ export var initial_time := 120         #Tiempo de vida en segundos
 #Nodos
 onready var interaction : RayCast = $interaction        #Raycast para saber si puede interactuar
 onready var hand : Position3D = $hand                   #Posision de las manos
-onready var anim_player : AnimationPlayer = $modelo/AnimationPlayer
+#onready var anim_player : AnimationPlayer = $modelo/AnimationPlayer
 
 #Otras variables
 var prev_collider
@@ -94,7 +94,7 @@ func move_control(delta):
 		velocity += transform.basis.z * speed * move_direction.z * delta
 		#$AnimationPlayer.play("walk")
 	
-	anim_player.play("ArmatureAction")
+#	anim_player.play("ArmatureAction")
 	
 	#Rotar al player 
 	rotate_y(rotation_speed * delta * -move_direction.x)

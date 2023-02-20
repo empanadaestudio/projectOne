@@ -41,7 +41,7 @@ func connect_area(other_area, area):
 			if pos is Position3D:
 				position_nodes.append(pos)
 	
-	camera_pos = 0
+#	camera_pos = 0
 	move_camera()
 
 func _input(event):

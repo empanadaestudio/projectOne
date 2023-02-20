@@ -7,22 +7,25 @@
 [ext_resource path="res://objects/props/basura.tscn" type="PackedScene" id=5]
 [ext_resource path="res://textures/world/brick_normal_map.png" type="Texture" id=6]
 [ext_resource path="res://materials/birck_material.tres" type="Material" id=7]
-[ext_resource path="res://level.tres" type="Environment" id=8]
 [ext_resource path="res://objects/interactables/Button.tscn" type="PackedScene" id=9]
 [ext_resource path="res://textures/world/rock.png" type="Texture" id=10]
 [ext_resource path="res://objects/farola.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scripts/classes/sub_classes/move_puzzle.gd" type="Script" id=12]
 [ext_resource path="res://objects/interactables/Lever.tscn" type="PackedScene" id=13]
 [ext_resource path="res://textures/world/rock_normal_map.png" type="Texture" id=14]
-[ext_resource path="res://models/deco/cloaca/alcantarilla.glb" type="PackedScene" id=15]
-[ext_resource path="res://models/deco/cono/cono.glb" type="PackedScene" id=16]
-[ext_resource path="res://objects/Liquid.tscn" type="PackedScene" id=17]
+[ext_resource path="res://objects/Box.tscn" type="PackedScene" id=16]
 
 [sub_resource type="BoxShape" id=3]
-extents = Vector3( 9, 11, 15 )
+extents = Vector3( 23, 9, 15 )
 
 [sub_resource type="BoxShape" id=4]
-extents = Vector3( 47, 13, 22 )
+extents = Vector3( 47, 9, 23 )
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 22, 9, 46 )
+
+[sub_resource type="BoxShape" id=13]
+extents = Vector3( 48, 9, 23 )
 
 [sub_resource type="SpatialMaterial" id=9]
 albedo_color = Color( 0.505882, 0.262745, 0.145098, 1 )
@@ -49,6 +52,14 @@ normal_texture = ExtResource( 14 )
 uv1_scale = Vector3( 12, 2, 6 )
 uv1_triplanar = true
 
+[sub_resource type="SpatialMaterial" id=11]
+albedo_texture = ExtResource( 10 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 14 )
+uv1_scale = Vector3( 6, 2, 12 )
+uv1_triplanar = true
+
 [sub_resource type="SpatialMaterial" id=10]
 albedo_color = Color( 1, 0, 0, 1 )
 
@@ -58,7 +69,7 @@ albedo_color = Color( 0.533333, 0.533333, 0.533333, 1 )
 [node name="Spatial" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0, -26 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -26 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 13, 27 )
@@ -71,7 +82,7 @@ target_path = NodePath("../Player")
 transition_duration = 0.5
 
 [node name="Inicio" type="Area" parent="CameraSystem"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16 )
 
 [node name="Position3D" type="Position3D" parent="CameraSystem/Inicio"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 12, -12 )
@@ -80,11 +91,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 12, -12 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 12, -12 )
 
 [node name="CollisionShape" type="CollisionShape" parent="CameraSystem/Inicio"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0 )
 shape = SubResource( 3 )
 
 [node name="Zone1" type="Area" parent="CameraSystem"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 18 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 24 )
 
 [node name="Position3D2" type="Position3D" parent="CameraSystem/Zone1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 7, -21 )
@@ -96,112 +107,395 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 7, -21 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 7, 15 )
 
 [node name="Position3D4" type="Position3D" parent="CameraSystem/Zone1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 7, 15 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 7, 15 )
 
 [node name="Position3D3" type="Position3D" parent="CameraSystem/Zone1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 7, -21 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 7, -21 )
 
 [node name="CollisionShape" type="CollisionShape" parent="CameraSystem/Zone1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 shape = SubResource( 4 )
+
+[node name="Zone2" type="Area" parent="CameraSystem"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -95, 6, 24 )
+
+[node name="Position3D2" type="Position3D" parent="CameraSystem/Zone2"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.5, 7, 1.5 )
+
+[node name="Position3D" type="Position3D" parent="CameraSystem/Zone2"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.5, 7, -43.5 )
+
+[node name="Position3D5" type="Position3D" parent="CameraSystem/Zone2"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19.5, 7, -43.5 )
+
+[node name="Position3D4" type="Position3D" parent="CameraSystem/Zone2"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19.5, 7, 27.5 )
+
+[node name="Position3D3" type="Position3D" parent="CameraSystem/Zone2"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.5, 7, 27.5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="CameraSystem/Zone2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -7 )
+shape = SubResource( 12 )
+
+[node name="Zone3" type="Area" parent="CameraSystem"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 18, 89 )
+
+[node name="Position3D" type="Position3D" parent="CameraSystem/Zone3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 7, -21 )
+
+[node name="Position3D5" type="Position3D" parent="CameraSystem/Zone3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 7, 15 )
+
+[node name="Position3D6" type="Position3D" parent="CameraSystem/Zone3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 7, 15 )
+
+[node name="Position3D4" type="Position3D" parent="CameraSystem/Zone3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 57, 7, 15 )
+
+[node name="Position3D3" type="Position3D" parent="CameraSystem/Zone3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 57, 7, -21 )
+
+[node name="Position3D7" type="Position3D" parent="CameraSystem/Zone3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 7, -21 )
+
+[node name="CollisionShape" type="CollisionShape" parent="CameraSystem/Zone3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2, 0 )
+shape = SubResource( 13 )
+
+[node name="Zone4" type="Area" parent="CameraSystem"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 94, 18, 77 )
+
+[node name="Position3D" type="Position3D" parent="CameraSystem/Zone4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 7, -21 )
+
+[node name="Position3D5" type="Position3D" parent="CameraSystem/Zone4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.99998, 7, 15 )
+
+[node name="Position3D6" type="Position3D" parent="CameraSystem/Zone4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 7, 15 )
+
+[node name="Position3D4" type="Position3D" parent="CameraSystem/Zone4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 53, 7, 15 )
+
+[node name="Position3D3" type="Position3D" parent="CameraSystem/Zone4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 53, 7, -21 )
+
+[node name="Position3D7" type="Position3D" parent="CameraSystem/Zone4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 7, -21 )
+
+[node name="CollisionShape" type="CollisionShape" parent="CameraSystem/Zone4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2, 0 )
+shape = SubResource( 13 )
+
+[node name="Zone5" type="Area" parent="CameraSystem"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 94, 36, -19 )
+
+[node name="Position3D" type="Position3D" parent="CameraSystem/Zone5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 7, -21 )
+
+[node name="Position3D5" type="Position3D" parent="CameraSystem/Zone5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.99998, 7, 15 )
+
+[node name="Position3D6" type="Position3D" parent="CameraSystem/Zone5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 7, 15 )
+
+[node name="Position3D4" type="Position3D" parent="CameraSystem/Zone5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 53, 7, 15 )
+
+[node name="Position3D3" type="Position3D" parent="CameraSystem/Zone5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 53, 7, -21 )
+
+[node name="Position3D7" type="Position3D" parent="CameraSystem/Zone5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 7, -21 )
+
+[node name="CollisionShape" type="CollisionShape" parent="CameraSystem/Zone5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2, 0 )
+shape = SubResource( 13 )
 
 [node name="Light" type="Node" parent="."]
 
-[node name="World" type="Node" parent="."]
-
-[node name="Decoration" type="Node" parent="World"]
-
-[node name="Farola1" parent="World/Decoration" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, -1, 15, -35 )
+[node name="Farola1" parent="Light" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, -1, 15, -20 )
 light_energy = 2.6
 spot_range = 122.22
 spot_angle = 63.66
 
-[node name="alcantarilla" parent="World/Decoration" instance=ExtResource( 15 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 5, 2, -37 )
+[node name="World" type="Node" parent="."]
 
-[node name="cono" parent="World/Decoration" instance=ExtResource( 16 )]
-transform = Transform( -0.622187, -0.66433, 0.414185, 0, -0.529061, -0.848584, 0.782869, -0.527978, 0.329174, 5.79519, 1, -11.4421 )
+[node name="Props" type="Node" parent="World"]
 
-[node name="Ventanas" type="Node" parent="World/Decoration"]
+[node name="Box" parent="World/Props" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 35, -4 )
 
-[node name="Props" type="Node" parent="World/Decoration"]
+[node name="Box2" parent="World/Props" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 35, -4 )
 
-[node name="basura2" parent="World/Decoration/Props" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, -36 )
+[node name="Box3" parent="World/Props" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, -12 )
 
-[node name="basura3" parent="World/Decoration/Props" instance=ExtResource( 5 )]
-transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -5, 1, -34 )
+[node name="Box4" parent="World/Props" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 11, 99 )
+
+[node name="Box5" parent="World/Props" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 11, 107 )
+
+[node name="Box6" parent="World/Props" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 11, 68 )
+
+[node name="basura2" parent="World/Props" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, -28 )
+
+[node name="basura3" parent="World/Props" instance=ExtResource( 5 )]
+transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -13, 1, -26 )
+
+[node name="basura4" parent="World/Props" instance=ExtResource( 5 )]
+transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -17, 1, -24 )
 
 [node name="Walls" type="Node" parent="World"]
 
 [node name="solid" parent="World/Walls" instance=ExtResource( 3 )]
-transform = Transform( 6.03983e-07, 1, 3.49691e-07, 0, -4.37114e-08, 8, 8, -7.54979e-08, -2.64009e-14, -24, 8, -14 )
+transform = Transform( 6.03983e-07, 1, 3.49691e-07, 0, -4.37114e-08, 8, 8, -7.54979e-08, -2.64009e-14, -24, 8, -8 )
 use_in_baked_light = true
 skeleton = NodePath("../../..")
 material/0 = ExtResource( 7 )
 
 [node name="solid14" parent="World/Walls" instance=ExtResource( 3 )]
-transform = Transform( -6.99382e-07, -8.74228e-08, -24, 2.41593e-06, 1, -2.09815e-06, 16, -1.50996e-07, -1.04907e-06, 0, 16, -22 )
+transform = Transform( -6.99382e-07, -8.74228e-08, -24, 2.41593e-06, 1, -2.09815e-06, 16, -1.50996e-07, -1.04907e-06, 0, 16, -16 )
 use_in_baked_light = true
 skeleton = NodePath("../../..")
 material/0 = SubResource( 9 )
 
 [node name="solid2" parent="World/Walls" instance=ExtResource( 3 )]
-transform = Transform( 6.03983e-07, 1, 3.49691e-07, 0, -4.37114e-08, 8, 8, -7.54979e-08, -2.64009e-14, -24, 8, -30 )
-use_in_baked_light = true
-skeleton = NodePath("../../..")
-material/0 = ExtResource( 7 )
-
-[node name="solid3" parent="World/Walls" instance=ExtResource( 3 )]
-transform = Transform( -1.30337e-06, -1, -3.49691e-07, 0, -4.37114e-08, 8, -8, 1.62921e-07, 5.69719e-14, 24, 8, -30 )
+transform = Transform( 6.03983e-07, 1, 3.49691e-07, 0, -4.37114e-08, 8, 8, -7.54979e-08, -2.64009e-14, -24, 8, -24 )
 use_in_baked_light = true
 skeleton = NodePath("../../..")
 material/0 = ExtResource( 7 )
 
 [node name="solid4" parent="World/Walls" instance=ExtResource( 3 )]
-transform = Transform( -1.30337e-06, -1, -3.49691e-07, 0, -4.37114e-08, 8, -8, 1.62921e-07, 5.69719e-14, 24, 8, -14 )
-use_in_baked_light = true
-skeleton = NodePath("../../..")
-material/0 = ExtResource( 7 )
-
-[node name="solid12" parent="World/Walls" instance=ExtResource( 3 )]
-transform = Transform( 2.00275e-06, 1, 3.49691e-07, 0, -4.37114e-08, 8, 8, -2.50344e-07, -8.75429e-14, 24, 8, -14 )
+transform = Transform( -1.30337e-06, -1, -3.49691e-07, 0, -4.37114e-08, 8, -8, 1.62921e-07, 5.69719e-14, 24, 8, -8 )
 use_in_baked_light = true
 skeleton = NodePath("../../..")
 material/0 = ExtResource( 7 )
 
 [node name="solid13" parent="World/Walls" instance=ExtResource( 3 )]
-transform = Transform( 2.00275e-06, 1, 3.49691e-07, 0, -4.37114e-08, 8, 8, -2.50344e-07, -8.75429e-14, 24, 8, -30 )
+transform = Transform( 2.00275e-06, 1, 3.49691e-07, 0, -4.37114e-08, 8, 8, -2.50344e-07, -8.75429e-14, 24, 8, -24 )
 use_in_baked_light = true
 skeleton = NodePath("../../..")
 material/0 = ExtResource( 7 )
 
 [node name="solid5" parent="World/Walls" instance=ExtResource( 3 )]
-transform = Transform( -8, 2.06632e-07, 7.22573e-14, 0, -4.37114e-08, 8, 1.65306e-06, 1, 3.49691e-07, 0, 8, -38 )
+transform = Transform( -8, 2.06632e-07, 7.22573e-14, 0, -4.37114e-08, 8, 1.65306e-06, 1, 3.49691e-07, 0, 8, -32 )
 use_in_baked_light = true
 skeleton = NodePath("../../..")
 material/0 = ExtResource( 7 )
 
 [node name="solid6" parent="World/Walls" instance=ExtResource( 3 )]
-transform = Transform( -8, 2.06632e-07, 7.22573e-14, 0, -4.37114e-08, 8, 1.65306e-06, 1, 3.49691e-07, 16, 8, -38 )
+transform = Transform( -8, 2.06632e-07, 7.22573e-14, 0, -4.37114e-08, 8, 1.65306e-06, 1, 3.49691e-07, 16, 8, -32 )
 use_in_baked_light = true
 skeleton = NodePath("../../..")
 material/0 = ExtResource( 7 )
 
 [node name="solid7" parent="World/Walls" instance=ExtResource( 3 )]
-transform = Transform( -8, 2.06632e-07, 7.22573e-14, 0, -4.37114e-08, 8, 1.65306e-06, 1, 3.49691e-07, -16, 8, -38 )
+transform = Transform( -8, 2.06632e-07, 7.22573e-14, 0, -4.37114e-08, 8, 1.65306e-06, 1, 3.49691e-07, -16, 8, -32 )
 use_in_baked_light = true
 skeleton = NodePath("../../..")
 material/0 = ExtResource( 7 )
 
 [node name="solid8" parent="World/Walls" instance=ExtResource( 3 )]
-transform = Transform( 8, -2.94055e-07, -1.02828e-13, 0, -4.37114e-08, 8, -2.35244e-06, -1, -3.49691e-07, -16, 8, -6 )
+transform = Transform( 8, -2.94055e-07, -1.02828e-13, 0, -4.37114e-08, 8, -2.35244e-06, -1, -3.49691e-07, -16, 8, 0 )
 use_in_baked_light = true
 skeleton = NodePath("../../..")
 material/0 = ExtResource( 7 )
 
 [node name="solid9" parent="World/Walls" instance=ExtResource( 3 )]
-transform = Transform( 8, -2.94055e-07, -1.02828e-13, 0, -4.37114e-08, 8, -2.35244e-06, -1, -3.49691e-07, 16, 8, -6 )
+transform = Transform( 8, -2.94055e-07, -1.02828e-13, 0, -4.37114e-08, 8, -2.35244e-06, -1, -3.49691e-07, 16, 8, 0 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid10" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( 8, -2.94055e-07, -1.02828e-13, 0, -4.37114e-08, 8, -2.35244e-06, -1, -3.49691e-07, -3, 18, 66 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid11" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( 8, -2.94055e-07, -1.02828e-13, 0, -4.37114e-08, 8, -2.35244e-06, -1, -3.49691e-07, -19, 18, 66 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid12" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -2.70213e-06, -1, -3.49691e-07, 0, -4.37114e-08, 8, -8, 3.37766e-07, 1.18113e-13, -27, 18, 74 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid15" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -2.70213e-06, -1, -3.49691e-07, 0, -4.37114e-08, 8, -8, 3.37766e-07, 1.18113e-13, -27, 18, 90 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid16" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -2.70213e-06, -1, -3.49691e-07, 0, -4.37114e-08, 8, -8, 3.37766e-07, 1.18113e-13, -27, 18, 106 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid17" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -8, 3.81478e-07, 1.33399e-13, 0, -4.37114e-08, 8, 3.05182e-06, 1, 3.49691e-07, -19, 18, 113 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid18" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -8, 3.81478e-07, 1.33399e-13, 0, -4.37114e-08, 8, 3.05182e-06, 1, 3.49691e-07, -3, 18, 113 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid19" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -8, 3.81478e-07, 1.33399e-13, 0, -4.37114e-08, 8, 3.05182e-06, 1, 3.49691e-07, 13, 18, 113 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid20" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -8, 3.81478e-07, 1.33399e-13, 0, -4.37114e-08, 8, 3.05182e-06, 1, 3.49691e-07, 29, 18, 113 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid22" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -8, 3.81478e-07, 1.33399e-13, 0, -4.37114e-08, 8, 3.05182e-06, 1, 3.49691e-07, 39, 18, 65 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid21" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -8, 3.81478e-07, 1.33399e-13, 0, -4.37114e-08, 8, 3.05182e-06, 1, 3.49691e-07, 45, 18, 113 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid23" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -8, 3.81478e-07, 1.33399e-13, 0, -4.37114e-08, 8, 3.05182e-06, 1, 3.49691e-07, 61, 18, 113 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid24" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -2.70213e-06, -1, -3.49691e-07, 0, -4.37114e-08, 8, -8, 3.37766e-07, 1.18113e-13, 69, 18, 121 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid25" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -2.70213e-06, -1, -3.49691e-07, 0, -4.37114e-08, 8, -8, 3.37766e-07, 1.18113e-13, 69, 18, 137 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid26" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -6.9282, -0.5, -1.74845e-07, 0, -4.37114e-08, 8, -4, 0.866026, 3.02841e-07, 75, 18, 135 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid27" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -8, 3.27826e-07, 1.13687e-13, 0, -4.37114e-08, 8, 2.6226e-06, 1, 3.49691e-07, 90, 18, 139 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid28" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -8, 3.27826e-07, 1.13687e-13, 0, -4.37114e-08, 8, 2.6226e-06, 1, 3.49691e-07, 106, 18, 139 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid29" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -6.9282, 0.5, 1.74846e-07, 0, -4.37114e-08, 8, 4, 0.866025, 3.02841e-07, 110, 18, 136 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid30" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( 3.33786e-06, 1, 3.49691e-07, 0, -4.37114e-08, 8, 8, -4.17233e-07, -1.42109e-13, 117, 18, 125 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid31" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( 3.33786e-06, 1, 3.49691e-07, 0, -4.37114e-08, 8, 8, -4.17233e-07, -1.42109e-13, 117, 18, 109 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid32" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( 3.33786e-06, 1, 3.49691e-07, 0, -4.37114e-08, 8, 8, -4.17233e-07, -1.42109e-13, 117, 18, 93 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid33" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( 3.33786e-06, 1, 3.49691e-07, 0, -4.37114e-08, 8, 8, -4.17233e-07, -1.42109e-13, 117, 18, 77 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid34" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( 3.33786e-06, 1, 3.49691e-07, 0, -4.37114e-08, 8, 8, -4.17233e-07, -1.42109e-13, 117, 18, 61 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid35" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( 3.33786e-06, 1, 3.49691e-07, 0, -4.37114e-08, 8, 8, -4.17233e-07, -1.42109e-13, 117, 18, 45 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid36" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( 8, -4.60944e-07, -1.57394e-13, 0, -4.37114e-08, 8, -3.68755e-06, -1, -3.49691e-07, 109, 18, 43 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid37" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( 8, -4.60944e-07, -1.57394e-13, 0, -4.37114e-08, 8, -3.68755e-06, -1, -3.49691e-07, 93, 18, 43 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid38" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( 8, -4.60944e-07, -1.57394e-13, 0, -4.37114e-08, 8, -3.68755e-06, -1, -3.49691e-07, 77, 18, 43 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid39" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -4.03724e-06, -1, -3.49691e-07, 0, -4.37114e-08, 8, -8, 5.04655e-07, 1.72679e-13, 69, 18, 41 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid40" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( -4.03724e-06, -1, -3.49691e-07, 0, -4.37114e-08, 8, -8, 5.04655e-07, 1.72679e-13, 69, 18, 57 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid41" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( 8, -4.60944e-07, -1.57394e-13, 0, -4.37114e-08, 8, -3.68755e-06, -1, -3.49691e-07, 61, 18, 65 )
+use_in_baked_light = true
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 7 )
+
+[node name="solid42" parent="World/Walls" instance=ExtResource( 3 )]
+transform = Transform( 8, -4.60944e-07, -1.57394e-13, 0, -4.37114e-08, 8, -3.68755e-06, -1, -3.49691e-07, 49, 18, 65 )
 use_in_baked_light = true
 skeleton = NodePath("../../..")
 material/0 = ExtResource( 7 )
@@ -209,12 +503,32 @@ material/0 = ExtResource( 7 )
 [node name="Floor" type="Node" parent="World"]
 
 [node name="solid" parent="World/Floor" instance=ExtResource( 3 )]
-transform = Transform( 24, 0, 0, 0, 1, 0, 0, 0, 16, 0, 0, -22 )
+transform = Transform( 24, 0, 0, 0, 1, 0, 0, 0, 16, 0, 0, -16 )
 skeleton = NodePath("../../..")
 material/0 = SubResource( 7 )
 
 [node name="solid2" parent="World/Floor" instance=ExtResource( 3 )]
-transform = Transform( 48, 0, 0, 0, 1, 0, 0, 0, 24, 0, 0, 18 )
+transform = Transform( 48, 0, 0, 0, 1, 0, 0, 0, 24, 0, 0, 24 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 8 )
+
+[node name="solid3" parent="World/Floor" instance=ExtResource( 3 )]
+transform = Transform( 24, 0, 0, 0, 1, 0, 0, 0, 48, -94, 0, 16 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 11 )
+
+[node name="solid4" parent="World/Floor" instance=ExtResource( 3 )]
+transform = Transform( 48, 0, 0, 0, 1, 0, 0, 0, 24, 21, 10, 89 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 8 )
+
+[node name="solid5" parent="World/Floor" instance=ExtResource( 3 )]
+transform = Transform( -2.09815e-06, 0, -24, 0, 1, 0, 48, 0, -1.04907e-06, 93, 10, 91 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 8 )
+
+[node name="solid6" parent="World/Floor" instance=ExtResource( 3 )]
+transform = Transform( -2.09815e-06, 0, -24, 0, 1, 0, 48, 0, -1.04907e-06, 93, 27, -5 )
 skeleton = NodePath("../../..")
 material/0 = SubResource( 8 )
 
@@ -223,13 +537,13 @@ material/0 = SubResource( 8 )
 [node name="Puzzle 1" type="Node" parent="Puzzles"]
 
 [node name="Button" parent="Puzzles/Puzzle 1" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -16 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -10 )
 
 [node name="Door" type="CSGCombiner" parent="Puzzles/Puzzle 1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.9 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0999999 )
 script = ExtResource( 12 )
 actionables = [ NodePath("../Button") ]
-target_translation = Vector3( 16, 0, -5.9 )
+target_translation = Vector3( 16, 0, 0.1 )
 
 [node name="Box" type="CSGBox" parent="Puzzles/Puzzle 1/Door"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0 )
@@ -241,20 +555,35 @@ material = SubResource( 10 )
 [node name="Puzzle 2" type="Node" parent="Puzzles"]
 
 [node name="Lever" parent="Puzzles/Puzzle 2" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 18 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -41, 0, 30 )
 
 [node name="Button2" parent="Puzzles/Puzzle 2" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 5 )
 
 [node name="Button3" parent="Puzzles/Puzzle 2" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 24 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -86, 0, -8 )
+
+[node name="Button4" parent="Puzzles/Puzzle 2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -102, 0, 6 )
+
+[node name="Button5" parent="Puzzles/Puzzle 2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -105, 0, 19 )
+
+[node name="Button6" parent="Puzzles/Puzzle 2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -98, 0, 36 )
+
+[node name="Button7" parent="Puzzles/Puzzle 2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -83, 0, 46 )
+
+[node name="Button8" parent="Puzzles/Puzzle 2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 0, 17 )
 
 [node name="platform" type="Spatial" parent="Puzzles/Puzzle 2"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -36, -2, 17 )
 script = ExtResource( 12 )
 time_transition = 2.0
 exclusive = true
-actionables = [ NodePath("../Button2"), NodePath("../Button3"), NodePath("../Lever") ]
+actionables = [ NodePath("../Button2"), NodePath("../Lever") ]
 target_translation = Vector3( -59, -2, 17 )
 
 [node name="solid5" parent="Puzzles/Puzzle 2/platform" instance=ExtResource( 3 )]
@@ -262,15 +591,97 @@ transform = Transform( -5.24537e-07, 0, 10, 0, 1, 0, -12, 0, -4.37114e-07, 0, 0,
 skeleton = NodePath("../../../..")
 material/0 = SubResource( 2 )
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 8 )
+[node name="platform3" type="Spatial" parent="Puzzles/Puzzle 2"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 34, -10 )
+script = ExtResource( 12 )
+actionables = [ NodePath("../Button8") ]
+target_rotation_degrees = Vector3( 0, 90, 60 )
 
-[node name="Liquid" parent="." instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 77 )
+[node name="solid5" parent="Puzzles/Puzzle 2/platform3" instance=ExtResource( 3 )]
+transform = Transform( -5.24537e-07, 0, 10, 0, 1, 0, -12, 0, -4.37114e-07, -10, 0, -3.8147e-06 )
+skeleton = NodePath("../../../..")
+material/0 = SubResource( 2 )
+
+[node name="Puzzle 3" type="Node" parent="Puzzles"]
+
+[node name="Button" parent="Puzzles/Puzzle 3" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 11 )
+
+[node name="Button2" parent="Puzzles/Puzzle 3" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 21 )
+order = 2
+
+[node name="Button3" parent="Puzzles/Puzzle 3" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 30 )
+order = 3
+
+[node name="platform" type="Spatial" parent="Puzzles/Puzzle 3"]
+transform = Transform( -4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, 19, 10, 48 )
+script = ExtResource( 12 )
+mode = 1
+exclusive = true
+actionables = [ NodePath("../Button"), NodePath("../Button2"), NodePath("../Button3") ]
+target_translation = Vector3( 36, 10, 48 )
+
+[node name="solid5" parent="Puzzles/Puzzle 3/platform" instance=ExtResource( 3 )]
+transform = Transform( -5.24537e-07, 0, 10, 0, 1, 0, -12, 0, -4.37114e-07, 0, 0, 0 )
+skeleton = NodePath("../../../..")
+material/0 = SubResource( 2 )
+
+[node name="platform2" type="Spatial" parent="Puzzles/Puzzle 3"]
+transform = Transform( 1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 19, 0, 48 )
+script = ExtResource( 12 )
+mode = 1
+time_transition = 1.0
+exclusive = true
+actionables = [ NodePath("../Button"), NodePath("../Button2"), NodePath("../Button3") ]
+target_rotation_degrees = Vector3( 0, 90, -30 )
+
+[node name="solid5" parent="Puzzles/Puzzle 3/platform2" instance=ExtResource( 3 )]
+transform = Transform( -5.24537e-07, 0, 10, 0, 1, 0, -12, 0, -4.37114e-07, -10, 0, -3.8147e-06 )
+skeleton = NodePath("../../../..")
+material/0 = SubResource( 2 )
+
+[node name="Puzzle 4" type="Node" parent="Puzzles"]
+
+[node name="Button4" parent="Puzzles/Puzzle 4" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 111, 10, 57 )
+
+[node name="Button5" parent="Puzzles/Puzzle 4" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 107, 10, 66 )
+order = 2
+
+[node name="Button6" parent="Puzzles/Puzzle 4" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 99, 10, 69 )
+order = 3
+
+[node name="platform3" type="Spatial" parent="Puzzles/Puzzle 4"]
+transform = Transform( -4.37114e-08, 0, 1, -0.5, -0.866025, -2.18557e-08, 0.866025, -0.5, 3.78552e-08, 81, 4, 52 )
+script = ExtResource( 12 )
+mode = 1
+actionables = [ NodePath("../Button4"), NodePath("../Button5"), NodePath("../Button6") ]
+target_translation = Vector3( 81, 21, 52 )
+target_rotation_degrees = Vector3( 0, 90, -15 )
+
+[node name="solid5" parent="Puzzles/Puzzle 4/platform3" instance=ExtResource( 3 )]
+transform = Transform( -5.24537e-07, 0, 10, 0, 1, 0, -12, 0, -4.37114e-07, 0, 0, 0 )
+skeleton = NodePath("../../../..")
+material/0 = SubResource( 2 )
+
+[node name="platform4" type="Spatial" parent="Puzzles/Puzzle 4"]
+transform = Transform( -4.37114e-08, 0, 1, 0.34202, 0.939693, 1.49502e-08, -0.939693, 0.34202, -4.10753e-08, 81, 8, 60 )
+script = ExtResource( 12 )
+mode = 1
+time_transition = 1.0
+actionables = [ NodePath("../Button4"), NodePath("../Button5"), NodePath("../Button6") ]
+target_translation = Vector3( 81, 16, 60 )
+target_rotation_degrees = Vector3( 0, 90, 20 )
+
+[node name="solid5" parent="Puzzles/Puzzle 4/platform4" instance=ExtResource( 3 )]
+transform = Transform( -5.24537e-07, 0, 10, 0, 1, 0, -12, 0, -4.37114e-07, -10, 0, -3.8147e-06 )
+skeleton = NodePath("../../../..")
+material/0 = SubResource( 2 )
 
 [node name="moonLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.988515, 0.10686, -0.10686, 0, 0.707107, 0.707107, 0.151123, -0.698986, 0.698986, -73, 81, 155 )
-light_color = Color( 0.2, 0.243137, 0.368627, 1 )
-light_energy = 5.267
 shadow_enabled = true
-directional_shadow_mode = 0
